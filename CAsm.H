@@ -441,7 +441,7 @@ U8 CAsmPfx(U8*bin,U8*len,U32*arg,U8*arg_i){
  while(1){
   tmp_arg=arg[*arg_i];
   if(!(C_PFX_MIN<=tmp_arg&&C_PFX_MAX>=tmp_arg))
-   return 1;
+   return 0;
   if(C_PFX_LCK<=tmp_arg&&C_PFX_REPNZ>=tmp_arg){
    if(0b0001&grp)
     return 0;
@@ -489,7 +489,7 @@ U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
   case C_ARC_IA32:
   case C_ARC_AMD64:
    tmp_len=CAsmPfx(bin,len,arg,&arg_i);
-   switch(arg[arg_i]){
+   switch(arg[arg_i++]){
     case C_MNM_PUSH:
      if(tmp_len){
       *len-=tmp_len;
@@ -535,6 +535,7 @@ U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
           case 2:
            bin[*len]=0x66;
            *len+=1;
+           goto C_PUSH_FLAG_SKIP;
           case 1:
            if(C_ARC_AMD64==arc)
             return 0;
@@ -576,6 +577,7 @@ U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
        return CAsmMem(arc,0xFF,1,6,bin,len,&arg[1]);
        return 0;
      }
+     arg_i+=1;
    }
  }
 }
