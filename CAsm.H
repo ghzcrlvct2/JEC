@@ -453,7 +453,7 @@ U8 CAsmPfx(U8*bin,U8*len,U32*arg,U8*arg_i){
   switch(C_PFX_MAX-tmp_arg){
    case 0:
    case 1:
-    bin[*len]=0x2E+(0x10*tmp_arg);
+    bin[*len]=0x2E + (0x10*tmp_arg);
     *len+=1;
     break;
    case 2:
@@ -488,7 +488,7 @@ U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
  switch(arc){
   case C_ARC_IA32:
   case C_ARC_AMD64:
-   tmp_len=CAsmPfx(bin,len,arg,&arg_i);
+   tmp_len=CAsmPfx(bin,len,arg,(U8*)&arg_i);
    switch(arg[arg_i++]){
     case C_MNM_PUSH:
      if(tmp_len){
