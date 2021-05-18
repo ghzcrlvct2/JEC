@@ -434,6 +434,7 @@ U8 CAsmMem(U8 arc,U8 opc,U8 is_ext,U8 ext,U8*bin,U8*len,U32*arg){
   *(U32*)(&bin[*len])=arg[arg_i+1];
   return 1;
  }
+ return  0;
 }
 
 U8 CAsmPfx(U8*bin,U8*len,U32*arg,U8*arg_i){
@@ -480,6 +481,7 @@ U8 CAsmPfx(U8*bin,U8*len,U32*arg,U8*arg_i){
   cnt+=1;
   *arg_i+=1;
  }
+ return 0;
 }
 
 U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
@@ -580,6 +582,7 @@ U8 CAsm(U8 arc,U8 set,U8*bin,U8*len,U32*arg){
      arg_i+=1;
    }
  }
+ return  0;
 }
 
 #endif

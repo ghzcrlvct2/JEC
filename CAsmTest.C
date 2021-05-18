@@ -11,4 +11,5 @@ int main(){
   printf("%02X ",bin[i]);
  }
  getchar();
+ return 0;
 }
